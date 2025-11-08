@@ -1,27 +1,65 @@
-# Compilador y banderas
+# =========================================================
+# ⚙️ CONFIGURACIÓN DEL COMPILADOR
+# =========================================================
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude
 
-# Archivos fuente (todos los .cpp dentro de src)
-SRC = $(wildcard src/*.cpp)
+# =========================================================
+# 📁 ESTRUCTURA DE ARCHIVOS
+# =========================================================
+SRC_DIR = src
+OBJ_DIR = obj
+BIN_DIR = bin
 
-# Archivos objeto (se generan automáticamente)
-OBJ = $(SRC:.cpp=.o)
+# Archivos fuente (.cpp), incluyendo main.cpp
+SRC = main.cpp $(shell find $(SRC_DIR) -name "*.cpp")
+
+# Archivos objeto correspondientes en obj/
+OBJ = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
 
 # Nombre del ejecutable
-TARGET = programa
+TARGET = $(BIN_DIR)/gestion
 
-# Regla por defecto
-all: $(TARGET)
+# =========================================================
+# 🧱 REGLA PRINCIPAL
+# =========================================================
+all: $(BIN_DIR) $(OBJ_DIR) $(TARGET)
 
-# Cómo construir el ejecutable a partir de los objetos
+# Cómo construir el ejecutable
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
+	@echo ""
+	@echo "✅ Compilación completada con éxito: $(TARGET)"
+	@echo ""
 
-# Regla genérica para compilar cada .cpp a .o
-src/%.o: src/%.cpp
+# =========================================================
+# 🔧 COMPILACIÓN DE CADA ARCHIVO CPP
+# =========================================================
+# Crear carpeta de objetos si no existe
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Limpieza de archivos compilados
+# =========================================================
+# 📂 CREACIÓN DE CARPETAS BIN Y OBJ
+# =========================================================
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+# =========================================================
+# 🧹 LIMPIEZA DE ARCHIVOS COMPILADOS
+# =========================================================
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	@echo "🧹 Archivos compilados eliminados."
+
+# =========================================================
+# 🏃 ATAJOS ÚTILES
+# =========================================================
+run: all
+	./$(TARGET)
+
+rebuild: clean all

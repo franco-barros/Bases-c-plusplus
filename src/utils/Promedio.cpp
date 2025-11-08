@@ -1,4 +1,4 @@
-#include "../include/Promedio.h"
+#include "../include/utils/Promedio.h"
 
 // Tres valores float
 float Promedio::calcular(float a, float b, float c) {

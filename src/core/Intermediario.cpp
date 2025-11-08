@@ -1,30 +1,40 @@
-#include "../include/Intermediario.h"
+#include "../include/core/Intermediario.h"
 #include <iostream>
+#include <limits> // para limpiar buffer si hace falta
 using namespace std;
 
-// Constructor con parámetros
-Intermediario::Intermediario(const string& nombre, long dni, int codigoCliente, int codigoProveedor,
-                             const string& empresa, const string& rubro)
-    : Persona(nombre, dni), Cliente(nombre, dni, codigoCliente),
-      Proveedor(nombre, dni, codigoProveedor),
-      empresa(empresa), rubro(rubro) {}
+
 
 // Leer datos desde teclado
 void Intermediario::leerDatos() {
     Persona::leerDatos();
+
     cout << "Ingrese código de cliente: ";
-    cin >> Cliente::codigo;
+    while (!(cin >> Cliente::codigo)) {
+        cout << "❌ Entrada inválida. Intente nuevamente: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
     cout << "Ingrese código de proveedor: ";
-    cin >> Proveedor::codigo;
+    while (!(cin >> Proveedor::codigo)) {
+        cout << "❌ Entrada inválida. Intente nuevamente: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // limpiar buffer
+
     cout << "Ingrese nombre de empresa: ";
-    cin >> empresa;
+    getline(cin, empresa);
+
     cout << "Ingrese rubro: ";
-    cin >> rubro;
+    getline(cin, rubro);
 }
 
 // Imprimir datos completos
 void Intermediario::imprimir() const {
-    cout << "\n=== Intermediario ===";
+    cout << "\n=== INTERMEDIARIO ===";
     Persona::imprimir();
     cout << "\nCódigo cliente: " << Cliente::codigo;
     cout << "\nCódigo proveedor: " << Proveedor::codigo;
@@ -34,7 +44,7 @@ void Intermediario::imprimir() const {
 
 // Mostrar resumen polimórfico
 void Intermediario::mostrarInfo() const {
-    cout << "Intermediario: " << nombre
+    cout << "Intermediario → " << nombre
          << " | DNI: " << dni
          << " | Cod.Cliente: " << Cliente::codigo
          << " | Cod.Proveedor: " << Proveedor::codigo

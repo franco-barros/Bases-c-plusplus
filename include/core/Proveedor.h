@@ -1,23 +1,24 @@
 #pragma once
-#include "Persona.h"
+#include "core/Persona.h"
 #include <string>
-#include <iostream>
 
-class Cliente : virtual public Persona {
+class Proveedor : virtual public Persona {
 protected:
     int codigo;
 
 public:
     // Constructores
-    Cliente() = default;
-    Cliente(const std::string& nombre, long dni, int codigo);
+    Proveedor() = default;
+    Proveedor(const std::string& nombre, long dni, int codigo);
 
     // Destructor virtual
-    virtual ~Cliente() = default;
+    virtual ~Proveedor() = default;
 
-    // Métodos que sobrescriben los de Persona
+    // Métodos clásicos
     void leerDatos() override;
     void imprimir() const override;
+
+    // Método para el sistema polimórfico
     void mostrarInfo() const override;
 
     // Getters y setters

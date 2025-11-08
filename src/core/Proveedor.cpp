@@ -1,4 +1,4 @@
-#include "../include/Proveedor.h"
+#include "../include/core/Proveedor.h"
 #include <iostream>
 using namespace std;
 
