@@ -1,12 +1,27 @@
-#include "Persona.h"
+#include "../include/Persona.h"
 #include <iostream>
 using namespace std;
 
-Persona::Persona(const string& nombre, int edad)
-    : nombre(nombre), edad(edad) {}
+// Constructor con parámetros
+Persona::Persona(const string& nombre, long dni)
+    : nombre(nombre), dni(dni) {}
 
-Persona::~Persona() {}
+// Métodos clásicos (compatibles con tu código viejo)
+void Persona::leerDatos() {
+    cout << "\nIngrese nombre: ";
+    cin >> ws; // limpia espacios y saltos de línea previos
+    getline(cin, nombre);
 
-void Persona::mostrar() const {
-    cout << "Nombre: " << nombre << ", Edad: " << edad << endl;
+    cout << "Ingrese DNI: ";
+    cin >> dni;
+}
+
+void Persona::imprimir() const {
+    cout << "\nNombre: " << nombre;
+    cout << "\nDNI: " << dni;
+}
+
+// Nuevo método (para el main con vector<Persona*>)
+void Persona::mostrarInfo() const {
+    cout << "Persona: " << nombre << " | DNI: " << dni << endl;
 }

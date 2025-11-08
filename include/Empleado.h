@@ -1,5 +1,6 @@
 #pragma once
 #include "Persona.h"
+#include <string>
 
 class Empleado : public Persona {
 private:
@@ -7,7 +8,20 @@ private:
     double salario;
 
 public:
-    Empleado(const std::string& nombre, int edad, const std::string& puesto, double salario);
+    // Constructores
+    Empleado() = default;
+    Empleado(const std::string& nombre, long dni, const std::string& puesto, double salario);
 
-    void mostrar() const override; // Sobrescribe el método mostrar() de Persona
+    // Métodos (sobrescriben los de Persona)
+    void leerDatos() override;
+    void imprimir() const override;
+    void mostrarInfo() const override;
+
+    // Getters
+    std::string getPuesto() const { return puesto; }
+    double getSalario() const { return salario; }
+
+    // Setters (opcionales)
+    void setPuesto(const std::string& p) { puesto = p; }
+    void setSalario(double s) { salario = s; }
 };
