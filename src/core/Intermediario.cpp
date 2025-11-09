@@ -1,6 +1,6 @@
 #include "../include/core/Intermediario.h"
 #include <iostream>
-#include <limits> // para limpiar buffer si hace falta
+#include <limits> 
 using namespace std;
 
 
@@ -32,7 +32,6 @@ void Intermediario::leerDatos() {
     getline(cin, rubro);
 }
 
-// Imprimir datos completos
 void Intermediario::imprimir() const {
     cout << "\n=== INTERMEDIARIO ===";
     Persona::imprimir();
@@ -42,7 +41,6 @@ void Intermediario::imprimir() const {
     cout << "\nRubro: " << rubro << endl;
 }
 
-// Mostrar resumen polimórfico
 void Intermediario::mostrarInfo() const {
     cout << "Intermediario → " << nombre
          << " | DNI: " << dni

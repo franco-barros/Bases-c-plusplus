@@ -1,26 +1,29 @@
 #pragma once
 #include "core/Persona.h"
-#include <string>
+#include <string> 
 
 class Empleado : public Persona {
-protected:
+protected: 
     std::string puesto;
     double salario;
-    int zonaAsignada; // 🔹 Nueva propiedad opcional
+    int zonaAsignada; 
 
-public:
-    // Constructores
+public: 
     Empleado() = default;
     Empleado(const std::string& nombre, long dni, const std::string& puesto, double salario);
 
-    // Métodos clásicos
     void leerDatos() override;
     void imprimir() const override;
 
-    // Método adicional para el sistema (para vector<Persona*>)
     void mostrarInfo() const override;
 
-    // 🔹 Nuevos métodos de zona
     void asignarZona(int zona);
     int getZonaAsignada() const;
+
+    double getSalario() const { return salario; }
+
+    std::string getPuesto() const { return puesto; }
+
+    void setPuesto(const std::string& p) { puesto = p; }
+    void setSalario(double s) { salario = s; }
 };

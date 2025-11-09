@@ -3,28 +3,25 @@
 #include "core/Empleado.h"
 #include "core/Intermediario.h"
 #include "core/Zona.h"
+#include "core/Cliente.h"
+#include "core/Proveedor.h"
 #include "ui/Menus.h"
 
-// =========================================================
-// 📦 App principal: inicialización, guardado y ejecución
-// =========================================================
+// Variables globales de App principal
 namespace App {
-    // Vectores globales (solo aquí)
     extern std::vector<Empleado> empleados;
     extern std::vector<Intermediario> intermediarios;
     extern std::vector<Zona> zonas;
+    extern std::vector<Cliente> clientes;
+    extern std::vector<Proveedor> proveedores;
 
-    // Rutas de archivos
     const std::string RUTA_EMPLEADOS = "data/empleados.dat";
     const std::string RUTA_INTERMEDIARIOS = "data/intermediarios.dat";
     const std::string RUTA_ZONAS = "data/zonas.dat";
+    const std::string RUTA_CLIENTES = "data/clientes.dat";
+    const std::string RUTA_PROVEEDORES = "data/proveedores.dat";
 
-    // Inicializa los datos desde archivos
     void inicializarDatos();
-
-    // Guarda los datos en los archivos
     void guardarDatos();
-
-    // Ejecuta la aplicación (menu principal)
     void ejecutarAplicacion();
 }

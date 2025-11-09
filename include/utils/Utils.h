@@ -10,7 +10,7 @@ using namespace std;
 // ============================================================
 namespace Color {
     const string RESET   = "\033[0m";
-    const string ROJO    = "\033[1;31m";
+    const string ROJO    = "\033[1;31m"; 
     const string VERDE   = "\033[1;32m";
     const string AMARILLO= "\033[1;33m";
     const string AZUL    = "\033[1;34m";
@@ -20,9 +20,7 @@ namespace Color {
     const string NEGRITA = "\033[1m";
 }
 
-// ============================================================
-// 🧹 Limpia la pantalla (compatible con Windows / Linux)
-// ============================================================
+// Limpia la pantalla (compatible con Windows / Linux)
 inline void limpiarPantalla() {
 #ifdef _WIN32
     system("cls");
@@ -31,18 +29,14 @@ inline void limpiarPantalla() {
 #endif
 }
 
-// ============================================================
-// ⏸️ Pausa hasta que el usuario presione ENTER
-// ============================================================
+// ⏸Pausa hasta que el usuario presione ENTER
 inline void pausar() {
     cout << "\nPresione ENTER para continuar...";
     cin.ignore();
     cin.get();
 }
 
-// ============================================================
-// 🎨 Imprime texto con color
-// ============================================================
+//  Imprime texto con color
 inline void colorearTexto(const string& texto, const string& color) {
     cout << color << texto << Color::RESET;
 }
